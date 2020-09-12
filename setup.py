@@ -8,7 +8,7 @@ def update_bashrc():
     to_write = Path("bashrc_code").read_text()
 
     contents, replacements = re.subn(
-        r"\# \<START OF PYBASH CODE\>\n(.|\n)*\n\# \<END OF PYBASH CODE\>",
+        r"\# \<START OF PYBASHRC CODE\>\n(.|\n)*\n\# \<END OF PYBASHRC CODE\>",
         to_write,
         contents,
     )
@@ -20,14 +20,14 @@ def update_bashrc():
 
 
 if __name__ == "__main__":
-    pybash_file = Path.home() / ".pybash.py"
-    if not pybash_file.exists():
-        pybash_file.write_text((Path("pybash") / "pybash_default.py").read_text())
-        print(f"Created pybash file at {pybash_file}.")
+    pybashrc_file = Path.home() / ".pybashrc.py"
+    if not pybashrc_file.exists():
+        pybashrc_file.write_text((Path("pybashrc") / "pybashrc_default.py").read_text())
+        print(f"Created pybashrc file at {pybashrc_file}.")
 
-    alias_file = Path.home() / ".pybash_aliases"
+    alias_file = Path.home() / ".pybashrc_aliases"
     if not alias_file.exists():
-        alias_file.write_text((Path("pybash") / "pybash_aliases").read_text())
-        print(f"Created pybash alias file at {alias_file}.")
+        alias_file.write_text((Path("pybashrc") / "pybashrc_aliases").read_text())
+        print(f"Created pybashrc alias file at {alias_file}.")
 
     update_bashrc()
