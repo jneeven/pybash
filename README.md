@@ -44,5 +44,6 @@ Provided arguments: arg1, arg2
 Simply run `pip install pybashrc`, and then run `pybashrc` once to set up the bash alias files etc. After that, you're ready to go! Any time you update your `.pybashrc.py`, you only need to restart the shell to process the updates.
 
 ## TODO:
+- [ ] Print function info if we get a TypeError when calling it
 - [ ] Support click commands
 - [ ] Support running from a virtual environment?
