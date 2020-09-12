@@ -1,0 +1,6 @@
+# <START OF PYBASH CODE>
+# include pybash alias file if it exists
+if [ -f $HOME/.pybash_aliases ]; then
+    . $HOME/.pybash_aliases
+fi
+# <END OF PYBASH CODE>
