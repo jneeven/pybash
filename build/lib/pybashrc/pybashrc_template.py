@@ -5,7 +5,7 @@ def _hidden_print_function(*args):
 
     However, other functions can still use it.
     """
-    print(args)
+    print(*args)
 
 
 def test_pybashrc(first_argument: str, second_argument: str = "second_argument"):
