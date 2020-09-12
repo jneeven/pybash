@@ -1,6 +1,6 @@
-# <START OF PYBASH CODE>
-# include pybash alias file if it exists
-if [ -f $HOME/.pybash_aliases ]; then
-    . $HOME/.pybash_aliases
+# <START OF PYBASHR CODE>
+# include pybashrc alias file if it exists
+if [ -f $HOME/.pybashrc_aliases ]; then
+    . $HOME/.pybashrc_aliases
 fi
-# <END OF PYBASH CODE>
+# <END OF PYBASHRC CODE>
