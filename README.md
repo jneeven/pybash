@@ -1,4 +1,6 @@
 # pybash
 Automatically register python functions as bash commands
 
-TODO: write a proper readme
+TODO:
+- [ ] Write a proper readme
+- [ ] Support click commands
