@@ -1,36 +1,38 @@
-import re
-from pathlib import Path
+import setuptools
 
 
-def update_bashrc():
-    bashrc = Path.home() / ".bashrc"
-    contents = bashrc.read_text()
-    to_write = Path("bashrc_template").read_text()
+def setup():
+    with open("README.md", "r") as fh:
+        long_description = fh.read()
 
-    contents, replacements = re.subn(
-        r"\# \<START OF PYBASHRC CODE\>\n(.|\n)*\n\# \<END OF PYBASHRC CODE\>\n",
-        to_write,
-        contents,
+    setuptools.setup(
+        name="pybashrc",
+        version="0.0.1",
+        author="Jelmer Neeven",
+        author_email="author@example.com",
+        description="Register python functions as bash commands",
+        long_description=long_description,
+        long_description_content_type="text/markdown",
+        url="https://github.com/jneeven/pybashrc",
+        packages=setuptools.find_packages(),
+        package_data={
+            # If any package contains *.txt or *.rst files, include them:
+            "": [
+                ".pybashrc_aliases",
+                ".pybashrc_execute.py",
+                "alias_template",
+                "bashrc_template",
+            ],
+        },
+        entry_points={"console_scripts": ["pybash=pybashrc.post_setup:post_setup"]},
+        classifiers=[
+            "Programming Language :: Python :: 3",
+            "License :: OSI Approved :: MIT License",
+            "Operating System :: Unix ",
+        ],
+        python_requires=">=3.6",
     )
-    if replacements == 0:
-        contents += "\n" + to_write
-
-    bashrc.write_text(
-        contents.replace("<INSTALL_DIR>", str(Path("pybashrc").absolute())),
-    )
-    print(f"Modified {bashrc}")
 
 
 if __name__ == "__main__":
-    pybashrc_file = Path.home() / ".pybashrc.py"
-    if not pybashrc_file.exists():
-        pybashrc_file.write_text(
-            (Path("pybashrc") / "pybashrc_template.py").read_text()
-        )
-        print(f"Created pybashrc file at {pybashrc_file}.")
-
-    alias_file = Path("pybashrc") / ".pybashrc_aliases"
-    alias_file.write_text((Path("pybashrc") / "alias_template").read_text())
-    print(f"Created pybashrc alias file at {alias_file}.")
-
-    update_bashrc()
+    setup()
