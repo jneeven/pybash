@@ -1,5 +1,6 @@
 build/
 dist/
-*.egg-info
-**/.pybashrc_aliases
-**/.pybashrc_execute.py
+pybashrc.egg-info/
+
+pybashrc/.pybashrc_aliases
+pybashrc/.pybashrc_execute.py

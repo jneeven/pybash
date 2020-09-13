@@ -10,7 +10,9 @@ def generate_executable():
     pybash = pybash_file.read_text().replace("    ", "\t") + "\n\n"
 
     # Read the pybash execute file template
-    execute = (_INSTALL_DIR / "execute_template.py").read_text().replace("    ", "\t")
+    execute = (
+        (_INSTALL_DIR / "templates" / "execute.py").read_text().replace("    ", "\t")
+    )
 
     # Create pybash execute file consisting of pybash file and a main function that
     # calls the appropriate user functions

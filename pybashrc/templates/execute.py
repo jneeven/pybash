@@ -20,7 +20,7 @@ def _get_function_info(func):
 
 
 def _update_aliases():
-    aliases = (_INSTALL_DIR / "alias_template").read_text()
+    aliases = (_INSTALL_DIR / "templates" / ".pybashrc_aliases").read_text()
     for name in _FUNCTIONS.keys():
         aliases += f"alias {name}='pybash {name}'\n"
     (_INSTALL_DIR / ".pybashrc_aliases").write_text(aliases)
