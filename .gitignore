@@ -3,4 +3,4 @@ dist/
 pybashrc.egg-info/
 
 pybashrc/.pybashrc_aliases
-pybashrc/.pybashrc_execute.py
+.pybashrc.py

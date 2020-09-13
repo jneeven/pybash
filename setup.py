@@ -23,7 +23,12 @@ def setup():
                 "templates/execute.py",
             ],
         },
-        entry_points={"console_scripts": ["pybash=pybashrc.post_setup:post_setup"]},
+        entry_points={
+            "console_scripts": [
+                "pybash=pybashrc.post_setup:post_setup",
+                "pybash-configure=pybashrc.post_setup:post_setup",
+            ]
+        },
         classifiers=[
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",
