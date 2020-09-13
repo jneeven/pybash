@@ -1,1 +1,1 @@
-alias pybash='python3 $PYBASHRC_INSTALL_DIR/.pybashrc_execute.py'
+alias pybash='python3 $PYBASHRC_INSTALL_DIR/execute.py'

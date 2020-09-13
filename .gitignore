@@ -1,6 +1,7 @@
+**/__pycache__
 build/
 dist/
 pybashrc.egg-info/
 
 pybashrc/.pybashrc_aliases
-pybashrc/.pybashrc_execute.py
+pybashrc/pybashrc_link.py
