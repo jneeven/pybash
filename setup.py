@@ -16,12 +16,11 @@ def setup():
         url="https://github.com/jneeven/pybashrc",
         packages=setuptools.find_packages(),
         package_data={
-            # If any package contains *.txt or *.rst files, include them:
             "": [
-                ".pybashrc_aliases",
-                ".pybashrc_execute.py",
-                "alias_template",
-                "bashrc_template",
+                "templates/.bashrc",
+                "templates/.pybashrc_aliases",
+                "templates/.pybashrc.py",
+                "templates/execute.py",
             ],
         },
         entry_points={"console_scripts": ["pybash=pybashrc.post_setup:post_setup"]},
