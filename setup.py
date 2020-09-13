@@ -20,7 +20,7 @@ def setup():
                 "templates/.bashrc",
                 "templates/.pybashrc_aliases",
                 "templates/.pybashrc.py",
-                "templates/execute.py",
+                "execute.py",
             ],
         },
         entry_points={

@@ -4,8 +4,6 @@ import os
 import sys
 from pathlib import Path
 
-from rich import print
-
 import pybashrc.pybashrc_link as pybashrc_link
 
 _INSTALL_DIR = Path(os.environ["PYBASHRC_INSTALL_DIR"])
@@ -49,7 +47,6 @@ def _update_aliases():
 
 
 if __name__ == "__main__":
-    print(_FUNCTIONS)
     if len(sys.argv) < 2:
         print("Available functions:")
         for function in _FUNCTIONS.values():
