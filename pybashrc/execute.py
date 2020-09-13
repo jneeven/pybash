@@ -4,6 +4,8 @@ import sys
 import traceback
 from pathlib import Path
 
+import click
+
 import pybashrc.pybashrc_link as pybashrc_link
 
 _INSTALL_DIR = Path(os.environ["PYBASHRC_INSTALL_DIR"])
@@ -14,7 +16,7 @@ if hasattr(pybashrc_link, "__all__"):
     _FUNCTIONS = {}
     for name in getattr(pybashrc_link, "__all__"):
         object = getattr(pybashrc_link, name)
-        if inspect.isfunction(object):
+        if inspect.isfunction(object) or isinstance(object, click.Command):
             _FUNCTIONS[name] = object
 
 # If not, import all functions that are in its scope that do not start with _ and
@@ -23,21 +25,41 @@ else:
     file_path = str(_INSTALL_DIR / "pybashrc_link.py")
     _FUNCTIONS = {}
     for name in dir(pybashrc_link):
+        if name.startswith("_"):
+            continue
+
         object = getattr(pybashrc_link, name)
         if (
-            not name.startswith("_")
-            and inspect.isfunction(object)
-            and inspect.getfile(object) == file_path
+            isinstance(object, click.Command)
+            # click commands are incompatible with inspect.getfile
+            and inspect.getfile(object.callback) == file_path
         ):
+            _FUNCTIONS[name] = object
+
+        elif inspect.isfunction(object) and inspect.getfile(object) == file_path:
             _FUNCTIONS[name] = object
 
 
 def _get_function_info(func):
     """Create a string containing the function name, its arguments and the docstring if
     there is any."""
+
+    command = None
+    # If this is a click command, use its wrapped function for the time being
+    if isinstance(func, click.Command):
+        command = func
+        func = command.callback
+
     string = f"{func.__name__}{inspect.signature(func)}"
     if func.__doc__:
         string += f"\n    {func.__doc__}"
+
+    # After printing the regular info, print the click help string if applicable
+    if command:
+        # Needs some extra indentation
+        help_string = command.get_help(click.Context(command)).replace("\n", "\n    ")
+        string += f"\n    {help_string}"
+
     return string
 
 
@@ -53,7 +75,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Available functions:")
         for function in _FUNCTIONS.values():
-            print(f"- {_get_function_info(function)}")
+            print(f"- {_get_function_info(function)}\n")
         exit(0)
 
     name = sys.argv[1]
@@ -67,7 +89,12 @@ if __name__ == "__main__":
     if name not in _FUNCTIONS.keys():
         raise ValueError(f"pybashrc received unknown function name {name}!")
 
-    # Parse arguments and keyword arguments
+    function = _FUNCTIONS[name]
+    # If this is a click command, let click handle the rest
+    if isinstance(function, click.Command):
+        function.main(sys.argv[2:], prog_name=name)
+
+    # Otherwise, parse arguments and keyword arguments
     args = []
     kwargs = {}
     for arg in sys.argv[2:]:

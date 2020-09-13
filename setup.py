@@ -15,6 +15,7 @@ def setup():
         long_description_content_type="text/markdown",
         url="https://github.com/jneeven/pybashrc",
         packages=setuptools.find_packages(),
+        install_requires=["click >= 7.0, < 8.0"],
         package_data={
             "": [
                 "templates/.bashrc",
