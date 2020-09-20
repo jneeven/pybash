@@ -109,6 +109,10 @@ Available functions:
 ```
 
 So you can now call `sub <pattern> <replacement> <string>` directly from the command line!
+```
+$ sub "\s" "_" "some test string"
+some_test_string
+```
 
 ## TODO:
 - [ ] Support running from a virtual environment
