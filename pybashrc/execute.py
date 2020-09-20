@@ -106,7 +106,9 @@ if __name__ == "__main__":
 
     # Call function
     try:
-        _FUNCTIONS[name](*args, **kwargs)
+        result = _FUNCTIONS[name](*args, **kwargs)
+        if result is not None:
+            print(result)
     except TypeError:
         # Print the exception without exiting
         traceback.print_exc()
