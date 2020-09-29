@@ -22,7 +22,6 @@ if hasattr(pybashrc_link, "__all__"):
 # If not, import all functions that are in its scope that do not start with _ and
 # actually originate from the file itself (i.e. they must not be imported)
 else:
-    file_path = str(_INSTALL_DIR / "pybashrc_link.py")
     _FUNCTIONS = {}
     for name in dir(pybashrc_link):
         if name.startswith("_"):
@@ -32,11 +31,14 @@ else:
         if (
             isinstance(object, click.Command)
             # click commands are incompatible with inspect.getfile
-            and inspect.getfile(object.callback) == file_path
+            and inspect.getfile(object.callback) == pybashrc_link.__file__
         ):
             _FUNCTIONS[name] = object
 
-        elif inspect.isfunction(object) and inspect.getfile(object) == file_path:
+        elif (
+            inspect.isfunction(object)
+            and inspect.getfile(object) == pybashrc_link.__file__
+        ):
             _FUNCTIONS[name] = object
 
 
@@ -68,6 +70,7 @@ def _update_aliases():
     aliases = (_INSTALL_DIR / "templates" / ".pybashrc_aliases").read_text()
     for name in _FUNCTIONS.keys():
         aliases += f"alias {name}='pybash {name}'\n"
+
     (_INSTALL_DIR / ".pybashrc_aliases").write_text(aliases)
 
 
