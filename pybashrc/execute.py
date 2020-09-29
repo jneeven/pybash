@@ -71,9 +71,6 @@ def _update_aliases():
     for name in _FUNCTIONS.keys():
         aliases += f"alias {name}='pybash {name}'\n"
 
-    print(aliases)
-    print(_INSTALL_DIR)
-
     (_INSTALL_DIR / ".pybashrc_aliases").write_text(aliases)
 
 

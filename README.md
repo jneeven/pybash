@@ -114,5 +114,5 @@ $ sub "\s" "_" "some test string"
 some_test_string
 ```
 
-## Roadmap:
-- Support running from a virtual environment
+## Running from a different virtual environment
+To run your pybash scripts from a different virtual environment, simply make sure that that environment has `pybashrc` installed and `pybash-configure` has been run from there once. Once that is done, `pybashrc` will simply execute your scripts with the currently active virtual environment!
