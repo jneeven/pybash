@@ -7,9 +7,9 @@ def setup():
 
     setuptools.setup(
         name="pybashrc",
-        version="1.1.1",
+        version="1.1.2",
         author="Jelmer Neeven",
-        author_email="author@example.com",
+        author_email="jelmer@neeven.tech",
         description="Register python functions as bash commands",
         long_description=long_description,
         long_description_content_type="text/markdown",
