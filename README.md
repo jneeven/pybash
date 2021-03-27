@@ -1,5 +1,5 @@
 # `pybashrc`: Automatically register python functions as bash commands
-This is a very simple utility that will create a `~/.pybashrc.py` file, and the functions it contains will be made accessible as bash commands.
+This is a very simple utility that will create a `~/.pybashrc.py` file, and the functions it contains will be made accessible as bash (or zsh) commands.
 
 By default, `pybashrc` aliases all functions that do not start with an underscore and were created in `~/.pybashrc.py` (i.e. they must not be imported). For example, this is the default template file:
 ```python
@@ -44,7 +44,7 @@ Provided arguments: arg1, arg2
 ```
 
 ## Installation
-Simply run `pip install pybashrc`, and then run `pybash-configure` once to set up the bash alias files etc. After that, you're ready to go! Any time you update your `.pybashrc.py`, your shell functions will also be updated (note that you'll need to restart the shell for a new alias to become available). If you forget which functions are available or what their usage is, simply run `pybash` to get an overview.
+Simply run `pip install pybashrc`, and then run `pybash-configure` once to set up the bash/zsh alias files etc. After that, you're ready to go! Any time you update your `.pybashrc.py`, your shell functions will also be updated (note that you'll need to restart the shell for a new alias to become available). If you forget which functions are available or what their usage is, simply run `pybash` to get an overview.
 
 ## Click functions
 `pybashrc` also supports [click functions](https://click.palletsprojects.com/en/7.x/):
