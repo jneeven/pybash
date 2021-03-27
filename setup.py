@@ -11,6 +11,7 @@ def setup():
         author="Jelmer Neeven",
         author_email="jelmer@neeven.tech",
         description="Register python functions as bash commands",
+        keywords="python bash zsh commands alias",
         long_description=long_description,
         long_description_content_type="text/markdown",
         url="https://github.com/jneeven/pybashrc",
